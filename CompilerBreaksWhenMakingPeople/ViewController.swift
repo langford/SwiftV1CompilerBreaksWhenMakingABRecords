@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AddressBook
 
 class ViewController: UIViewController {
                             
@@ -20,6 +21,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    func  createRecordRefRepresentation ()->ABRecordRef {
+        let unmanagedPerson:Unmanaged<ABRecordRef> = ABPersonCreate()
+        var newPerson:ABRecordRef = unmanagedPerson.takeRetainedValue()
+        let didSetFirstName = ABRecordSetValue(newPerson,kABPersonFirstNameProperty,"Mary",nil);
+        if(didSetFirstName==false){
+            //return nil
+        }
+        
+        
+        return newPerson
+    }
 
 }
 
